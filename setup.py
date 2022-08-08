@@ -5,7 +5,7 @@ with open("README.md") as fp:
 
 setup(
     name="steam-python-sdk",
-    version="1.1.1",
+    version="1.0.0",
     description="Python Client wrapper for Steam API",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -19,7 +19,7 @@ setup(
     author_email="david.asal@hotmail.com",
     url="https://github.com/deivit24/steam-python-sdk",
     packages=find_packages(),
-    install_requires=["requests"],
+    install_requires=["requests", "python-decouple"],
     license="MIT",
     # https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[

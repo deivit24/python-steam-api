@@ -10,9 +10,9 @@ __all__ = ["Steam"]
 class Steam:
     """Steam API client"""
 
-    def __init__(self, token: str, headers: dict = {}):
-        """Constructor for Typeform API client"""
-        client = Client(token, headers=headers)
+    def __init__(self, key: str = KEY, headers: dict = {}):
+        """Constructor for Steam API client"""
+        client = Client(key, headers=headers)
         self.__users = Users(client)
         self.__apps = Apps(client)
 
