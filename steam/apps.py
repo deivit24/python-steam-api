@@ -19,7 +19,8 @@ class Apps:
 
     def get_app_details(self, app_id: int) -> dict:
         response = request("get", self.__app_details_url, params={"appids": app_id})
-        return json.loads(response.text)
+        json_loaded_response = json.loads(response.text)
+        return json.dumps(json_loaded_response)
 
     def get_user_stats(self, steam_id: int, app_id: int) -> dict:
         response = self.__client.request(
