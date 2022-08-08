@@ -24,3 +24,7 @@ class Steam:
     def apps(self) -> Apps:
         return self.__apps
 
+
+steam = Steam(KEY)
+
+print(steam.users.get_user_friends_list("76561198995017863"))
