@@ -1,0 +1,11 @@
+__pycache__
+*.py[co]
+*.egg-info
+build
+dist
+.eggs
+.DS_STORE
+.coverage
+.idea
+.tox
+.env
