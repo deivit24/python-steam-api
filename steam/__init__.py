@@ -1,6 +1,6 @@
-from users import Users
-from client import Client
-from apps import Apps
+from .users import Users
+from .client import Client
+from .apps import Apps
 from decouple import config
 
 KEY = config("STEAM_API_KEY")
@@ -23,8 +23,3 @@ class Steam:
     @property
     def apps(self) -> Apps:
         return self.__apps
-
-
-steam = Steam(KEY)
-
-print(steam.users.get_user_friends_list("76561198995017863"))

@@ -1,7 +1,7 @@
 import json
 import typing
 from urllib import response
-from client import Client
+from .client import Client
 
 
 class Users:

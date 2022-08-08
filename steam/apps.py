@@ -2,10 +2,10 @@ import json
 
 import typing
 from requests import request, Response
-from client import Client
-from utils import buildUrlWithParamsForSearch
+from .client import Client
+from .utils import buildUrlWithParamsForSearch
 from bs4 import BeautifulSoup
-from constants import API_APP_DETAILS_URL, API_APP_SEARCH_URL
+from .constants import API_APP_DETAILS_URL, API_APP_SEARCH_URL
 
 
 class Apps:
