@@ -1,20 +1,12 @@
 # Get Started
 
-## Create Python Virtual Enviornment
+## Installation
 
-1. `python -m venv venv` or `python3 -m venv venv`
-
-If on Windows
-
-2. `source venv/Scripts/active`
-
-If on Linux or Mac
-
-2. `. venv/bin/activate`
+`pip install steam-python-sdk`
 
 ## Pip install requirements
 
-`pip install -r requirements.txt`
+`pip install beautifulsoup4`
 
 ## Create Steam API web key
 
@@ -24,20 +16,22 @@ Follow instructions to get API Key
 
 ## Create .env file
 
-From root
+From root of your project
 
 `touch .env`
 
-`echo "STEAM_API_KEY=<'Your Steam API KEY'>" >> .env`
+`echo "STEAM_API_KEY=<YOUR_STEAM_API KEY>" >> .env`
 
 # Basic Usage
 
 ### Searching for a user
 
 ```python
-steam = Steam(API_KEY)
+from steam import Steam
 
-user = steam.users.search_user("the12thchairman")
+steam = Steam()
+
+steam.users.search_user("the12thchairman")
 ```
 
 Response
@@ -67,7 +61,9 @@ Response
 ### Getting User details by steam id
 
 ```python
-steam = Steam(API_KEY)
+from steam import Steam
+
+steam = Steam()
 
 # arguments: steamid
 user = steam.users.get_user_details("76561198995017863")
@@ -100,7 +96,9 @@ Response
 ### Getting Friends List
 
 ```python
-steam = Steam(API_KEY)
+from steam import Steam
+
+steam = Steam()
 
 # arguments: steamid
 user = steam.users.get_user_friends_list("76561198995017863")
@@ -150,42 +148,6 @@ Response
       "personastateflags": 0,
       "relationship": "friend",
       "friend_since": 1649989273
-    },
-    {
-      "steamid": "76561198121423211",
-      "communityvisibilitystate": 3,
-      "profilestate": 1,
-      "personaname": "el_nave",
-      "profileurl": "https://steamcommunity.com/profiles/76561198121423211/",
-      "avatar": "https://avatars.akamai.steamstatic.com/1f48ca0206ad63f430b35173c0c994d26e8fed91.jpg",
-      "avatarmedium": "https://avatars.akamai.steamstatic.com/1f48ca0206ad63f430b35173c0c994d26e8fed91_medium.jpg",
-      "avatarfull": "https://avatars.akamai.steamstatic.com/1f48ca0206ad63f430b35173c0c994d26e8fed91_full.jpg",
-      "avatarhash": "1f48ca0206ad63f430b35173c0c994d26e8fed91",
-      "lastlogoff": 1659839839,
-      "personastate": 3,
-      "primaryclanid": "103582791429521408",
-      "timecreated": 1388690569,
-      "personastateflags": 0,
-      "relationship": "friend",
-      "friend_since": 1592096466
-    },
-    {
-      "steamid": "76561198062000703",
-      "communityvisibilitystate": 3,
-      "profilestate": 1,
-      "personaname": "Term",
-      "profileurl": "https://steamcommunity.com/id/_terminus14/",
-      "avatar": "https://avatars.akamai.steamstatic.com/eab71f1cb5d312c9b801e04a8da8b81d246bf6af.jpg",
-      "avatarmedium": "https://avatars.akamai.steamstatic.com/eab71f1cb5d312c9b801e04a8da8b81d246bf6af_medium.jpg",
-      "avatarfull": "https://avatars.akamai.steamstatic.com/eab71f1cb5d312c9b801e04a8da8b81d246bf6af_full.jpg",
-      "avatarhash": "eab71f1cb5d312c9b801e04a8da8b81d246bf6af",
-      "lastlogoff": 1659632671,
-      "personastate": 0,
-      "primaryclanid": "103582791434476706",
-      "timecreated": 1334459945,
-      "personastateflags": 0,
-      "relationship": "friend",
-      "friend_since": 1648350663
     },
     {
       "steamid": "76561198030124562",

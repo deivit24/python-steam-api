@@ -12,7 +12,11 @@ class Users:
         self.__client = client
 
     def search_user(self, search: str) -> dict:
-        """Searches for steam user exact match"""
+        """Searches for exact match
+
+        Args:
+            search (str): steam user. For example 'the12thchairman'
+        """
         search_response = self.__client.request(
             "get", "/ISteamUser/ResolveVanityURL/v1/", params={"vanityurl": search}
         )["response"]
@@ -23,6 +27,13 @@ class Users:
         return self.get_user_details(steam_id)
 
     def get_user_details(self, steam_id: str, single=True) -> dict:
+        """Gets user/player details by steam ID
+
+        Args:
+            steam_id (str): Steam ID
+            single (bool, optional): Gets on player. Defaults to True. When false, steam_id can be a string of steamids and delimited by a ','
+
+        """
         user_response = self.__client.request(
             "get", "/ISteamUser/GetPlayerSummaries/v2/", params={"steamids": steam_id}
         )["response"]
@@ -32,6 +43,11 @@ class Users:
             return {"players": user_response["players"]}
 
     def get_user_friends_list(self, steam_id: str) -> dict:
+        """Gets friend list of a user
+
+        Args:
+            steam_id (str): Steam ID
+        """
         friends_list_response = self.__client.request(
             "get", "/ISteamUser/GetFriendList/v1/", params={"steamid": steam_id}
         )["friendslist"]
@@ -39,6 +55,11 @@ class Users:
         return json.dumps({"friends": transform_friends})
 
     def get_user_recently_played_games(self, steam_id: str) -> dict:
+        """Gets recently played games
+
+        Args:
+            steam_id (str): Steam ID
+        """
         response = self.__client.request(
             "get",
             "/IPlayerService/GetRecentlyPlayedGames/v1/",
@@ -49,6 +70,13 @@ class Users:
     def get_owned_games(
         self, steam_id: str, include_appinfo=True, includ_free_games=True
     ) -> dict:
+        """Gets all owned games of a user by steam id
+
+        Args:
+            steam_id (str): Steam ID
+            include_appinfo (bool, optional): Includes app/game info. Defaults to True.
+            includ_free_games (bool, optional): Includes free games. Defaults to True.
+        """
         params = {
             "steamid": steam_id,
             "include_appinfo": include_appinfo,
@@ -62,6 +90,11 @@ class Users:
         return json.dumps(response)
 
     def get_user_steam_level(self, steam_id: str) -> dict:
+        """Gets user steam level
+
+        Args:
+            steam_id (str): Steam ID
+        """
         response = self.__client.request(
             "get",
             "/IPlayerService/GetSteamLevel/v1/",
@@ -70,13 +103,25 @@ class Users:
         return json.dumps(response)
 
     def get_user_badges(self, steam_id: str) -> dict:
+        """Gets user steam badges
+
+        Args:
+            steam_id (str): Steam ID
+        """
         response = self.__client.request(
             "get",
             "/IPlayerService/GetBadges/v1/",
             params={"steamid": steam_id},
         )["response"]
+        return json.dumps(response)
 
     def get_community_badge_progress(self, steam_id: str, badge_id: int) -> dict:
+        """Gets user community badge progress
+
+        Args:
+            steam_id (str): Steam ID
+            badge_id (int): Badge ID
+        """
         response = self.__client.request(
             "get",
             "/IPlayerService/GetCommunityBadgeProgress/v1",
@@ -85,6 +130,11 @@ class Users:
         return json.dumps(response)
 
     def get_account_public_info(self, steam_id: str) -> dict:
+        """Gets account public info
+
+        Args:
+            steam_id (str): Steam ID
+        """
         response = self.__client.request(
             "get",
             "/IGameServersService/GetAccountPublicInfo/v1",
