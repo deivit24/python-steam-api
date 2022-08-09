@@ -2,7 +2,7 @@
 
 ## Installation
 
-`pip install steam-python-sdk`
+`pip install steam-api-requests`
 
 ## Pip install requirements
 
