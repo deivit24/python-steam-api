@@ -2,7 +2,7 @@
 
 ## Installation
 
-`pip install steam-api-requests`
+`pip install python-steam-api`
 
 ## Pip install requirements
 
