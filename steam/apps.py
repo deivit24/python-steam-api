@@ -61,7 +61,7 @@ class Apps:
                     app["img"] = div.img["src"].replace("\\", "").replace('"', "")
             apps.append(app)
 
-        return json.dumps({"apps": apps})
+        return {"apps": apps}
 
     def search_url(self, search, country="US"):
         params = {"f": "games", "cc": country, "realm": 1, "l": "english"}

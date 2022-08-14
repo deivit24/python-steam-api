@@ -2,11 +2,9 @@ import json
 
 import requests
 import typing
-from decouple import config
 from .constants import API_BASE_URL
 from .utils import buildUrlWithParams, mergeDict
 
-KEY = config("STEAM_API_KEY")
 
 
 class Client(object):

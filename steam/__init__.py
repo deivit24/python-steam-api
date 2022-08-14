@@ -1,9 +1,7 @@
 from .users import Users
 from .client import Client
 from .apps import Apps
-from decouple import config
 
-KEY = config("STEAM_API_KEY")
 __all__ = ["Steam"]
 
 

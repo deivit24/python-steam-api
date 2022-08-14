@@ -28,7 +28,9 @@ From root of your project
 
 ```python
 from steam import Steam
+from decouple import config
 
+KEY = config("STEAM_API_KEY")
 steam = Steam()
 
 steam.users.search_user("the12thchairman")
@@ -62,6 +64,9 @@ Response
 
 ```python
 from steam import Steam
+from decouple import config
+
+KEY = config("STEAM_API_KEY")
 
 steam = Steam()
 
@@ -97,6 +102,10 @@ Response
 
 ```python
 from steam import Steam
+from decouple import config
+
+KEY = config("STEAM_API_KEY")
+
 
 steam = Steam()
 
@@ -175,6 +184,10 @@ Response
 
 ```python
 from steam import Steam
+from decouple import config
+
+KEY = config("STEAM_API_KEY")
+
 
 steam = Steam()
 
@@ -186,6 +199,10 @@ user = steam.users.get_user_recently_played_games("76561198995017863")
 
 ```python
 from steam import Steam
+from decouple import config
+
+KEY = config("STEAM_API_KEY")
+
 
 steam = Steam()
 
@@ -197,6 +214,10 @@ user = steam.users.get_owned_games("76561198995017863")
 
 ```python
 from steam import Steam
+from decouple import config
+
+KEY = config("STEAM_API_KEY")
+
 
 steam = Steam()
 
@@ -208,6 +229,10 @@ user = steam.users.get_user_steam_level("76561198995017863")
 
 ```python
 from steam import Steam
+from decouple import config
+
+KEY = config("STEAM_API_KEY")
+
 
 steam = Steam()
 
@@ -219,6 +244,10 @@ user = steam.users.get_user_badges("76561198995017863")
 
 ```python
 from steam import Steam
+from decouple import config
+
+KEY = config("STEAM_API_KEY")
+
 
 steam = Steam()
 
@@ -230,6 +259,10 @@ user = steam.users.get_community_badge_progress("<steam_id>", "<badge_id>")
 
 ```python
 from steam import Steam
+from decouple import config
+
+KEY = config("STEAM_API_KEY")
+
 
 steam = Steam()
 
@@ -241,6 +274,10 @@ user = steam.users.get_account_public_info("<steam_id>")
 
 ```python
 from steam import Steam
+from decouple import config
+
+KEY = config("STEAM_API_KEY")
+
 
 steam = Steam()
 
@@ -296,6 +333,10 @@ Response
 
 ```python
 from steam import Steam
+from decouple import config
+
+KEY = config("STEAM_API_KEY")
+
 
 terraria_app_id = 105600
 steam = Steam()
@@ -683,6 +724,10 @@ Response
 
 ```python
 from steam import Steam
+from decouple import config
+
+KEY = config("STEAM_API_KEY")
+
 
 steam = Steam()
 
@@ -694,6 +739,10 @@ user = steam.apps.get_user_stats("<steam_id>", "<app_id>")
 
 ```python
 from steam import Steam
+from decouple import config
+
+KEY = config("STEAM_API_KEY")
+
 
 steam = Steam()
 

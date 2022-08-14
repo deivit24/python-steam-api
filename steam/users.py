@@ -52,7 +52,7 @@ class Users:
             "get", "/ISteamUser/GetFriendList/v1/", params={"steamid": steam_id}
         )["friendslist"]
         transform_friends = self._transform_friends(friends_list_response)
-        return json.dumps({"friends": transform_friends})
+        return {"friends": transform_friends}
 
     def get_user_recently_played_games(self, steam_id: str) -> dict:
         """Gets recently played games
@@ -65,7 +65,7 @@ class Users:
             "/IPlayerService/GetRecentlyPlayedGames/v1/",
             params={"steamid": steam_id},
         )["response"]
-        return json.dumps(response)
+        return response
 
     def get_owned_games(
         self, steam_id: str, include_appinfo=True, includ_free_games=True
@@ -87,7 +87,7 @@ class Users:
             "/IPlayerService/GetOwnedGames/v1/",
             params=params,
         )["response"]
-        return json.dumps(response)
+        return response
 
     def get_user_steam_level(self, steam_id: str) -> dict:
         """Gets user steam level
@@ -100,7 +100,7 @@ class Users:
             "/IPlayerService/GetSteamLevel/v1/",
             params={"steamid": steam_id},
         )["response"]
-        return json.dumps(response)
+        return response
 
     def get_user_badges(self, steam_id: str) -> dict:
         """Gets user steam badges
@@ -113,7 +113,7 @@ class Users:
             "/IPlayerService/GetBadges/v1/",
             params={"steamid": steam_id},
         )["response"]
-        return json.dumps(response)
+        return response
 
     def get_community_badge_progress(self, steam_id: str, badge_id: int) -> dict:
         """Gets user community badge progress
@@ -127,7 +127,7 @@ class Users:
             "/IPlayerService/GetCommunityBadgeProgress/v1",
             params={"steamid": steam_id, "badgeid": badge_id},
         )["response"]
-        return json.dumps(response)
+        return response
 
     def get_account_public_info(self, steam_id: str) -> dict:
         """Gets account public info
