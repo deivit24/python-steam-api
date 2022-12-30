@@ -9,3 +9,6 @@ dist
 .idea
 .tox
 .env
+
+venv/*
+*venv

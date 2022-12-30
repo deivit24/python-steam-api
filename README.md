@@ -31,7 +31,7 @@ from steam import Steam
 from decouple import config
 
 KEY = config("STEAM_API_KEY")
-steam = Steam()
+steam = Steam(KEY)
 
 steam.users.search_user("the12thchairman")
 ```
@@ -68,7 +68,7 @@ from decouple import config
 
 KEY = config("STEAM_API_KEY")
 
-steam = Steam()
+steam = Steam(KEY)
 
 # arguments: steamid
 user = steam.users.get_user_details("76561198995017863")
@@ -107,7 +107,7 @@ from decouple import config
 KEY = config("STEAM_API_KEY")
 
 
-steam = Steam()
+steam = Steam(KEY)
 
 # arguments: steamid
 user = steam.users.get_user_friends_list("76561198995017863")
@@ -189,7 +189,7 @@ from decouple import config
 KEY = config("STEAM_API_KEY")
 
 
-steam = Steam()
+steam = Steam(KEY)
 
 # arguments: steamid
 user = steam.users.get_user_recently_played_games("76561198995017863")
@@ -219,7 +219,7 @@ from decouple import config
 KEY = config("STEAM_API_KEY")
 
 
-steam = Steam()
+steam = Steam(KEY)
 
 # arguments: steamid
 user = steam.users.get_user_steam_level("76561198995017863")
@@ -234,7 +234,7 @@ from decouple import config
 KEY = config("STEAM_API_KEY")
 
 
-steam = Steam()
+steam = Steam(KEY)
 
 # arguments: steamid
 user = steam.users.get_user_badges("76561198995017863")
@@ -249,7 +249,7 @@ from decouple import config
 KEY = config("STEAM_API_KEY")
 
 
-steam = Steam()
+steam = Steam(KEY)
 
 # arguments: steamid, badgeid
 user = steam.users.get_community_badge_progress("<steam_id>", "<badge_id>")
@@ -264,7 +264,7 @@ from decouple import config
 KEY = config("STEAM_API_KEY")
 
 
-steam = Steam()
+steam = Steam(KEY)
 
 # arguments: steamid
 user = steam.users.get_account_public_info("<steam_id>")
@@ -279,7 +279,7 @@ from decouple import config
 KEY = config("STEAM_API_KEY")
 
 
-steam = Steam()
+steam = Steam(KEY)
 
 # arguments: search
 user = steam.apps.search_games("terr")
@@ -339,7 +339,7 @@ KEY = config("STEAM_API_KEY")
 
 
 terraria_app_id = 105600
-steam = Steam()
+steam = Steam(KEY)
 
 # arguments: app_id
 user = steam.apps.get_app_details(terraria_app_id)
@@ -729,7 +729,7 @@ from decouple import config
 KEY = config("STEAM_API_KEY")
 
 
-steam = Steam()
+steam = Steam(KEY)
 
 # arguments: steam_id, app_id
 user = steam.apps.get_user_stats("<steam_id>", "<app_id>")
@@ -744,7 +744,7 @@ from decouple import config
 KEY = config("STEAM_API_KEY")
 
 
-steam = Steam()
+steam = Steam(KEY)
 
 # arguments: steam_id, app_id
 user = steam.apps.get_user_achievements("<steam_id>", "<app_id>")
