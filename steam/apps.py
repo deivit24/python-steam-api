@@ -42,24 +42,25 @@ class Apps:
         url = self.search_url(term)
         result = request("get", url)
         html = self.__validator(result)
-        soup = BeautifulSoup(html)
+        soup = BeautifulSoup(html, features="html.parser")
         links = soup.find_all("a")
         apps = []
         for l in links:
-            app = {}
-            string_id = l["data-ds-appid"]
-            href = l["href"].replace("\\", "").replace('"', "")
-            app["id"] = int(string_id.replace("\\", "").replace('"', ""))
-            app["link"] = href
-            divs = l.select("div")
-            for div in divs:
-                if div["class"][0] == '\\"match_name\\"':
-                    app["name"] = div.text
-                if div["class"][0] == '\\"match_price\\"':
-                    app["price"] = div.text
-                if div["class"][0] == '\\"match_img\\"':
-                    app["img"] = div.img["src"].replace("\\", "").replace('"', "")
-            apps.append(app)
+            if l.has_attr("data-ds-appid"):
+                app = {}
+                string_id = l["data-ds-appid"]
+                href = l["href"].replace("\\", "").replace('"', "")
+                app["id"] = int(string_id.replace("\\", "").replace('"', ""))
+                app["link"] = href
+                divs = l.select("div")
+                for div in divs:
+                    if div["class"][0] == '\\"match_name\\"':
+                        app["name"] = div.text
+                    if div["class"][0] == '\\"match_price\\"':
+                        app["price"] = div.text
+                    if div["class"][0] == '\\"match_img\\"':
+                        app["img"] = div.img["src"].replace("\\", "").replace('"', "")
+                apps.append(app)
 
         return {"apps": apps}
 

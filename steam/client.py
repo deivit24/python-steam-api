@@ -3,8 +3,7 @@ import json
 import requests
 import typing
 from .constants import API_BASE_URL
-from .utils import buildUrlWithParams, mergeDict
-
+from .utils import buildUrlWithParams, mergeDict, retry
 
 
 class Client(object):
@@ -21,6 +20,7 @@ class Client(object):
         )
         self.key = key
 
+    @retry(times=3, exceptions=(ValueError, TypeError))
     def request(
         self, method: str, url: str, data: any = {}, params: dict = {}, headers={}
     ) -> typing.Union[str, dict]:
