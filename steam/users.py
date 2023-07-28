@@ -30,8 +30,8 @@ class Users:
         """Gets user/player details by steam ID
 
         Args:
-            steam_id (str): Steam ID
-            single (bool, optional): Gets on player. Defaults to True. When false, steam_id can be a string of steamids and delimited by a ','
+            steam_id (str): Steam 64 ID
+            single (bool, optional): Gets one player. Defaults to True. When false, steam_id can be a string of steamids and delimited by a ','
 
         """
         user_response = self.__client.request(
@@ -46,7 +46,7 @@ class Users:
         """Gets friend list of a user
 
         Args:
-            steam_id (str): Steam ID
+            steam_id (str): Steam 64 ID
         """
         friends_list_response = self.__client.request(
             "get", "/ISteamUser/GetFriendList/v1/", params={"steamid": steam_id}
@@ -58,7 +58,7 @@ class Users:
         """Gets recently played games
 
         Args:
-            steam_id (str): Steam ID
+            steam_id (str): Steam 64 ID
         """
         response = self.__client.request(
             "get",
@@ -73,7 +73,7 @@ class Users:
         """Gets all owned games of a user by steam id
 
         Args:
-            steam_id (str): Steam ID
+            steam_id (str): Steam 64 ID
             include_appinfo (bool, optional): Includes app/game info. Defaults to True.
             includ_free_games (bool, optional): Includes free games. Defaults to True.
         """
@@ -93,7 +93,7 @@ class Users:
         """Gets user steam level
 
         Args:
-            steam_id (str): Steam ID
+            steam_id (str): Steam 64 ID
         """
         response = self.__client.request(
             "get",
@@ -106,7 +106,7 @@ class Users:
         """Gets user steam badges
 
         Args:
-            steam_id (str): Steam ID
+            steam_id (str): Steam 64 ID
         """
         response = self.__client.request(
             "get",
@@ -119,7 +119,7 @@ class Users:
         """Gets user community badge progress
 
         Args:
-            steam_id (str): Steam ID
+            steam_id (str): Steam 64 ID
             badge_id (int): Badge ID
         """
         response = self.__client.request(
@@ -133,7 +133,7 @@ class Users:
         """Gets account public info
 
         Args:
-            steam_id (str): Steam ID
+            steam_id (str): Steam 64 ID
         """
         response = self.__client.request(
             "get",
