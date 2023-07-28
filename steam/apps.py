@@ -17,12 +17,25 @@ class Apps:
         self.__search_url = API_APP_SEARCH_URL
         self.__app_details_url = API_APP_DETAILS_URL
 
-    def get_app_details(self, app_id: int) -> dict:
-        response = request("get", self.__app_details_url, params={"appids": app_id})
+    def get_app_details(self, app_id: int, country="US") -> dict:
+        """Obtains an apps details
+        
+        Args:
+            app_id (int): App ID. For example 546560 (Half-Life-Alyx)
+            country (str): ISO Country Code
+        """
+        response = request("get", self.__app_details_url, params={"appids": app_id, "cc" : country})
         json_loaded_response = json.loads(response.text)
         return json_loaded_response
 
     def get_user_stats(self, steam_id: int, app_id: int) -> dict:
+        """Obtains a user's stats for a specific app, includes only completed achievements
+        along with app specific information
+        
+        Args:
+            steam_id (int): Steam 64 ID
+            app_id (int): App ID
+        """
         response = self.__client.request(
             "get",
             "/ISteamUserStats/GetUserStatsForGame/v2/",
@@ -31,6 +44,12 @@ class Apps:
         return response
 
     def get_user_achievements(self, steam_id: int, app_id: int) -> dict:
+        """Obtains information of the user's achievments in the app
+        
+        Args:
+            steam_id (int): Steam 64 ID
+            app_id (int): App ID
+        """
         response = self.__client.request(
             "get",
             "/ISteamUserStats/GetPlayerAchievements/v1/",
@@ -38,8 +57,15 @@ class Apps:
         )
         return response
 
-    def search_games(self, term):
-        url = self.search_url(term)
+    #Is term meant to be any or a string, I'm not familiar enough with steam search so I'll leave it as is
+    def search_games(self, term, country="US"):
+        """Searches for games using the information given
+        
+        Args:
+            term (Any): Search term
+            country (str): ISO Country Code
+        """
+        url = self.search_url(term, country)
         result = request("get", url)
         html = self.__validator(result)
         soup = BeautifulSoup(html, features="html.parser")
@@ -64,6 +90,8 @@ class Apps:
 
         return {"apps": apps}
 
+    #This should be a private method imo, I don't know how you would like to name them so I'll leave it as is
+    #(Maybe change it to all caps since __search_url and __app_details_url are constants?)
     def search_url(self, search, country="US"):
         params = {"f": "games", "cc": country, "realm": 1, "l": "english"}
         result = buildUrlWithParamsForSearch((self.__search_url), search, params=params)
