@@ -68,7 +68,7 @@ class Users:
         return response
 
     def get_owned_games(
-        self, steam_id: str, include_appinfo=True, includ_free_games=True
+            self, steam_id: str, include_appinfo=True, includ_free_games=True
     ) -> dict:
         """Gets all owned games of a user by steam id
 
@@ -139,6 +139,19 @@ class Users:
             "get",
             "/IGameServersService/GetAccountPublicInfo/v1",
             params={"steamid": steam_id},
+        )
+        return response
+
+    def get_player_bans(self, steam_id: str) -> dict:
+        """Gets account bans info
+
+        Args:
+            steam_id (str): Steam 64 ID
+        """
+        response = self.__client.request(
+            "get",
+            "/ISteamUser/GetPlayerBans/v1",
+            params={"steamids": steam_id},
         )
         return response
 

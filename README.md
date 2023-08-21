@@ -749,3 +749,37 @@ steam = Steam(KEY)
 # arguments: steam_id, app_id
 user = steam.apps.get_user_achievements("<steam_id>", "<app_id>")
 ```
+
+
+### Getting user ban status
+
+```python
+from steam import Steam
+from decouple import config
+
+KEY = config("STEAM_API_KEY")
+
+
+steam = Steam(KEY)
+
+# arguments: steam_id
+user = steam.users.get_player_bans("<steam_id>")
+````
+
+
+```json
+{
+"players":[
+    {
+    "SteamId":"76561198079362196",
+    "CommunityBanned":false,
+    "VACBanned":false,
+    "NumberOfVACBans":0,
+    "DaysSinceLastBan":0,
+    "NumberOfGameBans":0,
+    "EconomyBan":"none"
+    }
+    ]
+}
+```
+
