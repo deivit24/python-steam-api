@@ -179,5 +179,5 @@ class Users:
             "get",
             "/ISteamUser/ResolveVanityURL/v1",
             params={"vanityurl": vanity},
-        )
+        )["response"]
         return response
