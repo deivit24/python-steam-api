@@ -173,7 +173,7 @@ class Users:
         """Get steamid64 from vanity URL
 
         Args:
-            vanity (str): vanity
+            vanity (str): Vanity URL
         """
         response = self.__client.request(
             "get",
