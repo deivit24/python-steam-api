@@ -168,3 +168,16 @@ class Users:
             f["friend_since"] = found["friend_since"]
 
         return friends
+    
+    def get_steamid(self, vanity: str) -> dict:
+        """Get steamid64 from vanity URL
+
+        Args:
+            vanity (str): Vanity URL
+        """
+        response = self.__client.request(
+            "get",
+            "/ISteamUser/ResolveVanityURL/v1",
+            params={"vanityurl": vanity},
+        )["response"]
+        return response
