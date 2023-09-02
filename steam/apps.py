@@ -17,14 +17,46 @@ class Apps:
         self.__search_url = API_APP_SEARCH_URL
         self.__app_details_url = API_APP_DETAILS_URL
 
-    def get_app_details(self, app_id: int, country="US") -> dict:
+    def get_app_details(self, app_id: int, country="US", filters: typing.Optional[str] = "basic") -> dict:
         """Obtains an apps details
         
         Args:
             app_id (int): App ID. For example 546560 (Half-Life-Alyx)
             country (str): ISO Country Code
+            filters (str): list of keys to return, e.g. "name,platforms,price_overview". If you use multiple appids, you must set this parameter to "price_overview".
+                The filter basic returns the following keys:
+                    type
+                    name
+                    steam_appid
+                    required_age
+                    dlc
+                    detailed_description
+                    about_the_game
+                    supported_languages
+                    detailed_description
+                    supported_languages
+                    header_image
+                    website
+                    pc_requirements
+                    mac_requirements
+                    linux_requirements
+                Any key names except those listed under basic are acceptable as filter values.
+                Optional filters:
+                    controller_support,
+                    fullgame,
+                    legal_notice,
+                    developers,
+                    demos,
+                    price_overview,
+                    metacritic,
+                    categories,
+                    genres,
+                    screenshots,
+                    movies,
+                    recommendations,
+                    achievements,
         """
-        response = request("get", self.__app_details_url, params={"appids": app_id, "cc" : country})
+        response = request("get", self.__app_details_url, params={"appids": app_id, "cc": country, "filters": filters})
         json_loaded_response = json.loads(response.text)
         return json_loaded_response
 
@@ -57,7 +89,7 @@ class Apps:
         )
         return response
 
-    #Is term meant to be any or a string, I'm not familiar enough with steam search so I'll leave it as is
+    # Is term meant to be any or a string, I'm not familiar enough with steam search so I'll leave it as is
     def search_games(self, term, country="US"):
         """Searches for games using the information given
         
@@ -90,8 +122,8 @@ class Apps:
 
         return {"apps": apps}
 
-    #This should be a private method imo, I don't know how you would like to name them so I'll leave it as is
-    #(Maybe change it to all caps since __search_url and __app_details_url are constants?)
+    # This should be a private method imo, I don't know how you would like to name them so I'll leave it as is
+    # (Maybe change it to all caps since __search_url and __app_details_url are constants?)
     def search_url(self, search, country="US"):
         params = {"f": "games", "cc": country, "realm": 1, "l": "english"}
         result = buildUrlWithParamsForSearch((self.__search_url), search, params=params)

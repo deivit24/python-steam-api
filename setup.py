@@ -5,7 +5,7 @@ with open("README.md") as fp:
 
 setup(
     name="python-steam-api",
-    version="1.1.1",
+    version="1.2.0",
     description="Python Client wrapper for Steam API",
     long_description=long_description,
     long_description_content_type="text/markdown",
