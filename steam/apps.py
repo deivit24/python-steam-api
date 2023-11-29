@@ -90,9 +90,9 @@ class Apps:
         return response
 
     # Is term meant to be any or a string, I'm not familiar enough with steam search so I'll leave it as is
-    def search_games(self, term, country="US"):
+       def search_games(self, term, country="US"):
         """Searches for games using the information given
-        
+
         Args:
             term (Any): Search term
             country (str): ISO Country Code
@@ -108,7 +108,7 @@ class Apps:
                 app = {}
                 string_id = l["data-ds-appid"]
                 href = l["href"].replace("\\", "").replace('"', "")
-                app["id"] = int(string_id.replace("\\", "").replace('"', ""))
+                app["id"] = [int(i) for i in string_id.replace("\\", "").replace('"', "").split(',')]
                 app["link"] = href
                 divs = l.select("div")
                 for div in divs:
@@ -119,7 +119,6 @@ class Apps:
                     if div["class"][0] == '\\"match_img\\"':
                         app["img"] = div.img["src"].replace("\\", "").replace('"', "")
                 apps.append(app)
-
         return {"apps": apps}
 
     # This should be a private method imo, I don't know how you would like to name them so I'll leave it as is
