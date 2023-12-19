@@ -90,9 +90,8 @@ class Apps:
         return response
 
     # Is term meant to be any or a string, I'm not familiar enough with steam search so I'll leave it as is
-       def search_games(self, term, country="US"):
+    def search_games(self, term, country="US"):
         """Searches for games using the information given
-
         Args:
             term (Any): Search term
             country (str): ISO Country Code
