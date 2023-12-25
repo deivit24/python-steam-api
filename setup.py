@@ -19,7 +19,7 @@ setup(
     author_email="david.asal@hotmail.com",
     url="https://github.com/deivit24/steam-python-sdk",
     packages=find_packages(),
-    install_requires=["requests", "python-decouple"],
+    install_requires=["requests", "python-decouple", "beautifulsoup4"],
     license="MIT",
     # https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[

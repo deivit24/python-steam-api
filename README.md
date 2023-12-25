@@ -4,10 +4,6 @@
 
 `pip install python-steam-api`
 
-## Pip install requirements
-
-`pip install beautifulsoup4`
-
 ## Create Steam API web key
 
 [Steam API Web key](https://steamcommunity.com/dev/apikey)
