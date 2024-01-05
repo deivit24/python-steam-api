@@ -75,7 +75,7 @@ class Apps:
         )
         return response
 
-    def get_user_achievements(self, steam_id: int, app_id: int) -> dict:
+    def get_user_achievements(self, steam_id: int, app_id: int, language="en") -> dict:
         """Obtains information of the user's achievments in the app
         
         Args:
@@ -85,7 +85,7 @@ class Apps:
         response = self.__client.request(
             "get",
             "/ISteamUserStats/GetPlayerAchievements/v1/",
-            params={"steamid": steam_id, "appid": app_id},
+            params={"steamid": steam_id, "appid": app_id, "l": language},
         )
         return response
 
