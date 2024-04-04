@@ -7,9 +7,9 @@ authors = [
   {email = 'david.asal@hotmail.com', name = 'David Salazar'},
 ]
 classifiers = [
-  'License :: OSI Approved :: MIT License',
   'Development Status :: 4 - Beta',
   'Intended Audience :: Developers',
+  'License :: OSI Approved :: MIT License',
   'Operating System :: OS Independent',
   'Programming Language :: Python :: 3 :: Only',
   'Programming Language :: Python :: 3.10',
@@ -19,17 +19,17 @@ classifiers = [
 ]
 dependencies = [
   'beautifulsoup4',
-  'requests',
-  'python-decouple',
   'charset-normalizer',
+  'python-decouple',
+  'requests',
 ]
 description = 'Python Client wrapper for Steam API.'
 keywords = [
+  'api',
   'python',
+  'steam community',
   'steam',
   'steamapi',
-  'steam community',
-  'api',
 ]
 license = {file = 'LICENSE'}
 maintainers = [
