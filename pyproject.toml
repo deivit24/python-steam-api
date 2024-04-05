@@ -1,0 +1,68 @@
+[build-system]
+build-backend = 'setuptools.build_meta'
+requires = ['setuptools >= 64.0.0']
+
+[project]
+authors = [
+  {email = 'david.asal@hotmail.com', name = 'David Salazar'},
+]
+classifiers = [
+  'Development Status :: 4 - Beta',
+  'Intended Audience :: Developers',
+  'License :: OSI Approved :: MIT License',
+  'Operating System :: OS Independent',
+  'Programming Language :: Python :: 3 :: Only',
+  'Programming Language :: Python :: 3.10',
+  'Programming Language :: Python :: 3.11',
+  'Programming Language :: Python :: 3.12',
+  'Programming Language :: Python :: 3.9',
+]
+dependencies = [
+  'beautifulsoup4',
+  'charset-normalizer',
+  'python-decouple',
+  'requests',
+]
+description = 'Python Client wrapper for Steam API.'
+keywords = [
+  'api',
+  'python',
+  'steam community',
+  'steam',
+  'steamapi',
+]
+license = {file = 'LICENSE'}
+maintainers = [
+  {email = 'mathieu.scheltienne@fcbg.ch', name = 'Mathieu Scheltienne'},
+]
+name = 'python-steam-api'
+readme = 'README.md'
+requires-python = '>=3.9'
+version = '1.2.2'
+
+[project.optional-dependencies]
+all = [
+  'python-steam-api[style]',
+]
+full = [
+  'python-steam-api[all]',
+]
+style = [
+  'toml-sort',
+]
+
+[project.urls]
+source = 'https://github.com/deivit24/python-steam-api'
+tracker = 'https://github.com/deivit24/python-steam-api/issues'
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+exclude = ['steam_web_api*tests']
+include = ['steam_web_api*']
+
+[tool.tomlsort]
+all = true
+ignore_case = true
+trailing_comma_inline_array = true
