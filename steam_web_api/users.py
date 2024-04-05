@@ -1,6 +1,3 @@
-import json
-import typing
-from urllib import response
 from .client import Client
 
 
@@ -67,9 +64,7 @@ class Users:
         )["response"]
         return response
 
-    def get_owned_games(
-            self, steam_id: str, include_appinfo=True, includ_free_games=True
-    ) -> dict:
+    def get_owned_games(self, steam_id: str, include_appinfo=True, includ_free_games=True) -> dict:
         """Gets all owned games of a user by steam id
 
         Args:
@@ -159,16 +154,12 @@ class Users:
         friend_steam_ids = [friend["steamid"] for friend in friends_list["friends"]]
         friends = self.get_user_details(",".join(friend_steam_ids), False)["players"]
         for f in friends:
-            found = next(
-                item
-                for item in friends_list["friends"]
-                if item["steamid"] == f["steamid"]
-            )
+            found = next(item for item in friends_list["friends"] if item["steamid"] == f["steamid"])
             f["relationship"] = found["relationship"]
             f["friend_since"] = found["friend_since"]
 
         return friends
-    
+
     def get_steamid(self, vanity: str) -> dict:
         """Get steamid64 from vanity URL
 
