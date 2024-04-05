@@ -19,8 +19,6 @@ classifiers = [
 ]
 dependencies = [
   'beautifulsoup4',
-  'charset-normalizer',
-  'python-decouple',
   'requests',
 ]
 description = 'Python Client wrapper for Steam API.'
