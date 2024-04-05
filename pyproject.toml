@@ -48,12 +48,49 @@ full = [
   'python-steam-api[all]',
 ]
 style = [
+  'codespell[toml]>=2.2.4',
+  'isort',
+  'ruff>=0.1.8',
   'toml-sort',
+  'yamllint',
 ]
 
 [project.urls]
 source = 'https://github.com/deivit24/python-steam-api'
 tracker = 'https://github.com/deivit24/python-steam-api/issues'
+
+[tool.codespell]
+check-filenames = true
+check-hidden = true
+ignore-words = '.codespellignore'
+skip = 'build,.git,.mypy_cache,.pytest_cache'
+
+[tool.isort]
+extend_skip_glob = []
+line_length = 88
+multi_line_output = 3
+profile = 'black'
+py_version = 39
+
+[tool.ruff]
+extend-exclude = []
+line-length = 120
+target-version = 'py39'
+
+[tool.ruff.format]
+docstring-code-format = true
+line-ending = "lf"
+
+[tool.ruff.lint]
+ignore = []
+select = ['A', 'B', 'E', 'F', 'UP', 'W']
+
+[tool.ruff.lint.per-file-ignores]
+'*' = [
+  'B904', # 'Within an except clause, raise exceptions with raise ... from ...'
+  'UP007', # 'Use `X | Y` for type annotations', requires python 3.10
+]
+'__init__.py' = ['F401']
 
 [tool.setuptools]
 include-package-data = false
