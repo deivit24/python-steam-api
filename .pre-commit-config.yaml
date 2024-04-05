@@ -1,0 +1,37 @@
+repos:
+    - repo: https://github.com/pycqa/isort
+      rev: 5.13.2
+      hooks:
+          - id: isort
+            files: steam_web_api
+
+    - repo: https://github.com/astral-sh/ruff-pre-commit
+      rev: v0.3.5
+      hooks:
+          - id: ruff
+            name: ruff linter
+            args: [--fix]
+            files: steam_web_api
+          - id: ruff-format
+            name: ruff formatter
+            files: steam_web_api
+
+    - repo: https://github.com/codespell-project/codespell
+      rev: v2.2.6
+      hooks:
+          - id: codespell
+            args: [--write-changes]
+            additional_dependencies: [tomli]
+
+    - repo: https://github.com/pappasam/toml-sort
+      rev: v0.23.1
+      hooks:
+          - id: toml-sort-fix
+            files: pyproject.toml
+
+    - repo: https://github.com/adrienverge/yamllint
+      rev: v1.35.1
+      hooks:
+          - id: yamllint
+            args: [--strict, -c, .yamllint.yaml]
+            files: (.github/|.pre-commit-config.yaml|.yamllint.yaml)
