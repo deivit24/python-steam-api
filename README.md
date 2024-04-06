@@ -10,23 +10,19 @@
 
 Follow instructions to get API Key
 
-## Create .env file
+# Set up your environment variable
 
-From root of your project
-
-`touch .env`
-
-`echo "STEAM_API_KEY=<YOUR_STEAM_API KEY>" >> .env`
+To create an environment variable in Python, you can utilize the os module. Use os.environ to access and modify environment variables. To accommodate different operating systems, check the documentation or resources specific to each OS for instructions on setting environment variables. For example, on Windows, you can use the Command Prompt or PowerShell, while on Unix-based systems like Linux or macOS, you can modify configuration files or use terminal commands like export.
 
 # Basic Usage
 
 ### Searching for a user
 
 ```python
+import os
 from steam import Steam
-from decouple import config
 
-KEY = config("STEAM_API_KEY")
+KEY = os.environ.get("STEAM_API_KEY")
 steam = Steam(KEY)
 
 steam.users.search_user("the12thchairman")
@@ -59,10 +55,10 @@ Response
 ### Getting User details by steam id
 
 ```python
+import os
 from steam import Steam
-from decouple import config
 
-KEY = config("STEAM_API_KEY")
+KEY = os.environ.get("STEAM_API_KEY")
 
 steam = Steam(KEY)
 
@@ -97,10 +93,10 @@ Response
 ### Getting Friends List
 
 ```python
+import os
 from steam import Steam
-from decouple import config
 
-KEY = config("STEAM_API_KEY")
+KEY = os.environ.get("STEAM_API_KEY")
 
 
 steam = Steam(KEY)
@@ -179,11 +175,10 @@ Response
 ### Getting Users Recently Played Games
 
 ```python
+import os
 from steam import Steam
-from decouple import config
 
-KEY = config("STEAM_API_KEY")
-
+KEY = os.environ.get("STEAM_API_KEY")
 
 steam = Steam(KEY)
 
@@ -194,11 +189,10 @@ user = steam.users.get_user_recently_played_games("76561198995017863")
 ### Getting User Owned Games
 
 ```python
+import os
 from steam import Steam
-from decouple import config
 
-KEY = config("STEAM_API_KEY")
-
+KEY = os.environ.get("STEAM_API_KEY")
 
 steam = Steam()
 
@@ -209,11 +203,10 @@ user = steam.users.get_owned_games("76561198995017863")
 ### Getting User Steam Level
 
 ```python
+import os
 from steam import Steam
-from decouple import config
 
-KEY = config("STEAM_API_KEY")
-
+KEY = os.environ.get("STEAM_API_KEY")
 
 steam = Steam(KEY)
 
@@ -224,11 +217,10 @@ user = steam.users.get_user_steam_level("76561198995017863")
 ### Getting User Badges
 
 ```python
+import os
 from steam import Steam
-from decouple import config
 
-KEY = config("STEAM_API_KEY")
-
+KEY = os.environ.get("STEAM_API_KEY")
 
 steam = Steam(KEY)
 
@@ -239,11 +231,10 @@ user = steam.users.get_user_badges("76561198995017863")
 ### Getting Community Badge Progress
 
 ```python
+import os
 from steam import Steam
-from decouple import config
 
-KEY = config("STEAM_API_KEY")
-
+KEY = os.environ.get("STEAM_API_KEY")
 
 steam = Steam(KEY)
 
@@ -254,11 +245,10 @@ user = steam.users.get_community_badge_progress("<steam_id>", "<badge_id>")
 ### Getting User Public Account
 
 ```python
+import os
 from steam import Steam
-from decouple import config
 
-KEY = config("STEAM_API_KEY")
-
+KEY = os.environ.get("STEAM_API_KEY")
 
 steam = Steam(KEY)
 
@@ -269,10 +259,10 @@ user = steam.users.get_account_public_info("<steam_id>")
 ### Searching for Games
 
 ```python
+import os
 from steam import Steam
-from decouple import config
 
-KEY = config("STEAM_API_KEY")
+KEY = os.environ.get("STEAM_API_KEY")
 
 
 steam = Steam(KEY)
@@ -330,7 +320,7 @@ Response
 #### Parameters:
 
 - `app_id` (int): The unique App ID of the app you want to retrieve details for. For example, 105600 corresponds to "Terraria"
-
+  i
 - `country` (str): An optional parameter representing the ISO Country Code. The default value is "US."
 
 - `filters` (str): An optional parameter that allows you to specify a list of keys to return in the app details. If not provided, it defaults to "basic." The available filter options include:
@@ -352,14 +342,13 @@ Response
   - movies
   - recommendations
   - achievements
-Response
+    Response
 
 ```python
+import os
 from steam import Steam
-from decouple import config
 
-KEY = config("STEAM_API_KEY")
-
+KEY = os.environ.get("STEAM_API_KEY")
 
 terraria_app_id = 105600
 steam = Steam(KEY)
@@ -380,10 +369,7 @@ user = steam.apps.get_app_details(terraria_app_id)
       "required_age": 0,
       "is_free": false,
       "controller_support": "full",
-      "dlc": [
-      409210,
-      1323320
-      ],
+      "dlc": [409210, 1323320],
       "detailed_description": "Dig, Fight, Explore, Build:  The very world is at your fingertips as you fight for survival, fortune, and glory.   Will you delve deep into cavernous expanses in search of treasure and raw materials with which to craft ever-evolving gear, machinery, and aesthetics?   Perhaps you will choose instead to seek out ever-greater foes to test your mettle in combat?   Maybe you will decide to construct your own city to house the host of mysterious allies you may encounter along your travels? <br><br>In the World of Terraria, the choice is yours!<br><br>Blending elements of classic action games with the freedom of sandbox-style creativity, Terraria is a unique gaming experience where both the journey and the destination are completely in the player’s control.   The Terraria adventure is truly as unique as the players themselves!  <br><br>Are you up for the monumental task of exploring, creating, and defending a world of your own?  <br><br>\t\t\t\t\t\t\t<strong>Key features:</strong><br>\t\t\t\t\t\t\t<ul class=\"bb_ul\"><li>Sandbox Play<br>\t\t\t\t\t\t\t</li><li> Randomly generated worlds<br>\t\t\t\t\t\t\t</li><li>Free Content Updates<br>\t\t\t\t\t\t\t</li></ul>",
       "about_the_game": "Dig, Fight, Explore, Build:  The very world is at your fingertips as you fight for survival, fortune, and glory.   Will you delve deep into cavernous expanses in search of treasure and raw materials with which to craft ever-evolving gear, machinery, and aesthetics?   Perhaps you will choose instead to seek out ever-greater foes to test your mettle in combat?   Maybe you will decide to construct your own city to house the host of mysterious allies you may encounter along your travels? <br><br>In the World of Terraria, the choice is yours!<br><br>Blending elements of classic action games with the freedom of sandbox-style creativity, Terraria is a unique gaming experience where both the journey and the destination are completely in the player’s control.   The Terraria adventure is truly as unique as the players themselves!  <br><br>Are you up for the monumental task of exploring, creating, and defending a world of your own?  <br><br>\t\t\t\t\t\t\t<strong>Key features:</strong><br>\t\t\t\t\t\t\t<ul class=\"bb_ul\"><li>Sandbox Play<br>\t\t\t\t\t\t\t</li><li> Randomly generated worlds<br>\t\t\t\t\t\t\t</li><li>Free Content Updates<br>\t\t\t\t\t\t\t</li></ul>",
       "short_description": "Dig, fight, explore, build! Nothing is impossible in this action-packed adventure game. Four Pack also available!",
@@ -412,11 +398,10 @@ user = steam.apps.get_app_details(terraria_app_id)
 ### Getting user app stats
 
 ```python
+import os
 from steam import Steam
-from decouple import config
 
-KEY = config("STEAM_API_KEY")
-
+KEY = os.environ.get("STEAM_API_KEY")
 
 steam = Steam(KEY)
 
@@ -427,10 +412,10 @@ user = steam.apps.get_user_stats("<steam_id>", "<app_id>")
 ### Getting user app achievements
 
 ```python
+import os
 from steam import Steam
-from decouple import config
 
-KEY = config("STEAM_API_KEY")
+KEY = os.environ.get("STEAM_API_KEY")
 
 
 steam = Steam(KEY)
@@ -439,36 +424,33 @@ steam = Steam(KEY)
 user = steam.apps.get_user_achievements("<steam_id>", "<app_id>")
 ```
 
-
 ### Getting user ban status
 
 ```python
+import os
 from steam import Steam
-from decouple import config
 
-KEY = config("STEAM_API_KEY")
+KEY = os.environ.get("STEAM_API_KEY")
 
 
 steam = Steam(KEY)
 
 # arguments: steam_id
 user = steam.users.get_player_bans("<steam_id>")
-````
-
+```
 
 ```json
 {
-"players":[
+  "players": [
     {
-    "SteamId":"76561198079362196",
-    "CommunityBanned":false,
-    "VACBanned":false,
-    "NumberOfVACBans":0,
-    "DaysSinceLastBan":0,
-    "NumberOfGameBans":0,
-    "EconomyBan":"none"
+      "SteamId": "76561198079362196",
+      "CommunityBanned": false,
+      "VACBanned": false,
+      "NumberOfVACBans": 0,
+      "DaysSinceLastBan": 0,
+      "NumberOfGameBans": 0,
+      "EconomyBan": "none"
     }
-    ]
+  ]
 }
 ```
-
