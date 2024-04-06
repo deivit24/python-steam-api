@@ -20,7 +20,7 @@ To create an environment variable in Python, you can utilize the os module. Use 
 
 ```python
 import os
-from steam import Steam
+from steam_web_api import Steam
 
 KEY = os.environ.get("STEAM_API_KEY")
 steam = Steam(KEY)
@@ -56,7 +56,7 @@ Response
 
 ```python
 import os
-from steam import Steam
+from steam_web_api import Steam
 
 KEY = os.environ.get("STEAM_API_KEY")
 
@@ -94,7 +94,7 @@ Response
 
 ```python
 import os
-from steam import Steam
+from steam_web_api import Steam
 
 KEY = os.environ.get("STEAM_API_KEY")
 
@@ -176,7 +176,7 @@ Response
 
 ```python
 import os
-from steam import Steam
+from steam_web_api import Steam
 
 KEY = os.environ.get("STEAM_API_KEY")
 
@@ -190,7 +190,7 @@ user = steam.users.get_user_recently_played_games("76561198995017863")
 
 ```python
 import os
-from steam import Steam
+from steam_web_api import Steam
 
 KEY = os.environ.get("STEAM_API_KEY")
 
@@ -204,7 +204,7 @@ user = steam.users.get_owned_games("76561198995017863")
 
 ```python
 import os
-from steam import Steam
+from steam_web_api import Steam
 
 KEY = os.environ.get("STEAM_API_KEY")
 
@@ -218,7 +218,7 @@ user = steam.users.get_user_steam_level("76561198995017863")
 
 ```python
 import os
-from steam import Steam
+from steam_web_api import Steam
 
 KEY = os.environ.get("STEAM_API_KEY")
 
@@ -232,7 +232,7 @@ user = steam.users.get_user_badges("76561198995017863")
 
 ```python
 import os
-from steam import Steam
+from steam_web_api import Steam
 
 KEY = os.environ.get("STEAM_API_KEY")
 
@@ -246,7 +246,7 @@ user = steam.users.get_community_badge_progress("<steam_id>", "<badge_id>")
 
 ```python
 import os
-from steam import Steam
+from steam_web_api import Steam
 
 KEY = os.environ.get("STEAM_API_KEY")
 
@@ -260,7 +260,7 @@ user = steam.users.get_account_public_info("<steam_id>")
 
 ```python
 import os
-from steam import Steam
+from steam_web_api import Steam
 
 KEY = os.environ.get("STEAM_API_KEY")
 
@@ -346,7 +346,7 @@ Response
 
 ```python
 import os
-from steam import Steam
+from steam_web_api import Steam
 
 KEY = os.environ.get("STEAM_API_KEY")
 
@@ -399,7 +399,7 @@ user = steam.apps.get_app_details(terraria_app_id)
 
 ```python
 import os
-from steam import Steam
+from steam_web_api import Steam
 
 KEY = os.environ.get("STEAM_API_KEY")
 
@@ -413,7 +413,7 @@ user = steam.apps.get_user_stats("<steam_id>", "<app_id>")
 
 ```python
 import os
-from steam import Steam
+from steam_web_api import Steam
 
 KEY = os.environ.get("STEAM_API_KEY")
 
@@ -428,7 +428,7 @@ user = steam.apps.get_user_achievements("<steam_id>", "<app_id>")
 
 ```python
 import os
-from steam import Steam
+from steam_web_api import Steam
 
 KEY = os.environ.get("STEAM_API_KEY")
 
