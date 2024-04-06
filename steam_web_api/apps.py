@@ -1,11 +1,12 @@
 import json
-
 import typing
-from requests import request, Response
-from .client import Client
-from .utils import buildUrlWithParamsForSearch
+
 from bs4 import BeautifulSoup
+from requests import Response, request
+
+from .client import Client
 from .constants import API_APP_DETAILS_URL, API_APP_SEARCH_URL
+from .utils import buildUrlWithParamsForSearch
 
 
 class Apps:
@@ -19,7 +20,7 @@ class Apps:
 
     def get_app_details(self, app_id: int, country="US", filters: typing.Optional[str] = "basic") -> dict:
         """Obtains an apps details
-        
+
         Args:
             app_id (int): App ID. For example 546560 (Half-Life-Alyx)
             country (str): ISO Country Code
@@ -63,7 +64,7 @@ class Apps:
     def get_user_stats(self, steam_id: int, app_id: int) -> dict:
         """Obtains a user's stats for a specific app, includes only completed achievements
         along with app specific information
-        
+
         Args:
             steam_id (int): Steam 64 ID
             app_id (int): App ID
@@ -77,7 +78,7 @@ class Apps:
 
     def get_user_achievements(self, steam_id: int, app_id: int) -> dict:
         """Obtains information of the user's achievments in the app
-        
+
         Args:
             steam_id (int): Steam 64 ID
             app_id (int): App ID
@@ -102,14 +103,14 @@ class Apps:
         soup = BeautifulSoup(html, features="html.parser")
         links = soup.find_all("a")
         apps = []
-        for l in links:
-            if l.has_attr("data-ds-appid"):
+        for link in links:
+            if link.has_attr("data-ds-appid"):
                 app = {}
-                string_id = l["data-ds-appid"]
-                href = l["href"].replace("\\", "").replace('"', "")
-                app["id"] = [int(i) for i in string_id.replace("\\", "").replace('"', "").split(',')]
+                string_id = link["data-ds-appid"]
+                href = link["href"].replace("\\", "").replace('"', "")
+                app["id"] = [int(i) for i in string_id.replace("\\", "").replace('"', "").split(",")]
                 app["link"] = href
-                divs = l.select("div")
+                divs = link.select("div")
                 for div in divs:
                     if div["class"][0] == '\\"match_name\\"':
                         app["name"] = div.text
@@ -133,7 +134,7 @@ class Apps:
         except Exception:
             body = {}
 
-        if type(body) is dict and body.get("code", None) is not None:
+        if isinstance(body, dict) and body.get("code", None) is not None:
             raise Exception(body.get("description"))
         elif result.status_code >= 400:
             raise Exception(" ".join([str(result.status_code), result.reason]))

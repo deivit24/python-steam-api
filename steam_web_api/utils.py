@@ -3,20 +3,12 @@ from urllib.parse import urlencode
 
 def buildUrlWithParams(url: str, key: str, params={}) -> str:
     encoded = urlencode(cleanDict(params))
-    return (
-        url + "?key=" + key
-        if (len(encoded) == 0)
-        else (url + "?key=" + key + "&" + encoded)
-    )
+    return url + "?key=" + key if (len(encoded) == 0) else (url + "?key=" + key + "&" + encoded)
 
 
 def buildUrlWithParamsForSearch(url: str, search: str, params={}) -> str:
     encoded = urlencode(cleanDict(params))
-    return (
-        url + "?term=" + search
-        if (len(encoded) == 0)
-        else (url + "?term=" + search + "&" + encoded)
-    )
+    return url + "?term=" + search if (len(encoded) == 0) else (url + "?term=" + search + "&" + encoded)
 
 
 def cleanDict(x: dict = {}) -> dict:
@@ -54,6 +46,7 @@ def retry(times, exceptions):
     :param Exceptions: Lists of exceptions that trigger a retry attempt
     :type Exceptions: Tuple of Exceptions
     """
+
     def decorator(func):
         def newfn(*args, **kwargs):
             attempt = 0
@@ -61,11 +54,10 @@ def retry(times, exceptions):
                 try:
                     return func(*args, **kwargs)
                 except exceptions:
-                    print(
-                        'Exception thrown when attempting to run %s, attempt '
-                        '%d of %d' % (func, attempt, times)
-                    )
+                    print("Exception thrown when attempting to run %s, attempt " "%d of %d" % (func, attempt, times))
                     attempt += 1
             return func(*args, **kwargs)
+
         return newfn
+
     return decorator
