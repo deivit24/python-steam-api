@@ -40,7 +40,12 @@ version = '1.2.2'
 
 [project.optional-dependencies]
 all = [
+  'python-steam-api[build]',
   'python-steam-api[style]',
+]
+build = [
+  'build',
+  'twine',
 ]
 full = [
   'python-steam-api[all]',
