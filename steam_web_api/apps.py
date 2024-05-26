@@ -24,7 +24,8 @@ class Apps:
         Args:
             app_id (int): App ID. For example 546560 (Half-Life-Alyx)
             country (str): ISO Country Code
-            filters (str): list of keys to return, e.g. "name,platforms,price_overview". If you use multiple appids, you must set this parameter to "price_overview".
+            filters (str): list of keys to return, e.g. "name,platforms,price_overview". If you use multiple appids,
+            you must set this parameter to "price_overview".
                 The filter basic returns the following keys:
                     type
                     name
@@ -76,17 +77,18 @@ class Apps:
         )
         return response
 
-    def get_user_achievements(self, steam_id: int, app_id: int) -> dict:
-        """Obtains information of the user's achievments in the app
+    def get_user_achievements(self, steam_id: int, app_id: int, language: str = "en") -> dict:
+        """Obtains information of the user's achievements in the app
 
         Args:
             steam_id (int): Steam 64 ID
             app_id (int): App ID
+            language: (str) Abbriviated language
         """
         response = self.__client.request(
             "get",
             "/ISteamUserStats/GetPlayerAchievements/v1/",
-            params={"steamid": steam_id, "appid": app_id},
+            params={"steamid": steam_id, "appid": app_id, "l": language},
         )
         return response
 
