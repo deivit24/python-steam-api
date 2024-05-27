@@ -8,7 +8,7 @@ from .utils import buildUrlWithParams, mergeDict, retry
 
 
 class Client:
-    """Steams API HTTP client"""
+    """Streams API HTTP client"""
 
     def __init__(self, key: str, headers: dict = {}):
         """Constructor for TypeForm API client"""
@@ -38,7 +38,7 @@ class Client:
         if isinstance(body, dict) and body.get("code", None) is not None:
             raise Exception(body.get("description"))
         elif result.status_code >= 400:
-            raise Exception(" ".join([str(result.status_code), result.reason]))
+            raise Exception(" ".join([str(result.status_code), result.reason, result.text]))
         elif len(result.text) == 0:
             return "OK"
         else:
