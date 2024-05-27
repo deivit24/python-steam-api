@@ -102,7 +102,12 @@ class Apps:
         url = self.search_url(term, country)
         result = request("get", url)
         html = self.__validator(result)
-        soup = BeautifulSoup(html, features="html.parser")
+
+        # Decode the HTML content for Unicode escape sequences
+        decoded_html = html.encode("utf-8").decode("unicode_escape")
+
+        # Parse the decoded HTML with BeautifulSoup
+        soup = BeautifulSoup(decoded_html, features="html.parser")
         links = soup.find_all("a")
         apps = []
         for link in links:
@@ -112,15 +117,22 @@ class Apps:
                 href = link["href"].replace("\\", "").replace('"', "")
                 app["id"] = [int(i) for i in string_id.replace("\\", "").replace('"', "").split(",")]
                 app["link"] = href
-                divs = link.select("div")
+
+                # Extracting the div elements and their content
+                divs = link.find_all("div")
                 for div in divs:
-                    if div["class"][0] == '\\"match_name\\"':
+                    class_name = div.get("class")[0].strip('\\"')
+                    if class_name == "match_name":
                         app["name"] = div.text
-                    if div["class"][0] == '\\"match_price\\"':
+                    elif class_name == "match_price":
                         app["price"] = div.text
-                    if div["class"][0] == '\\"match_img\\"':
-                        app["img"] = div.img["src"].replace("\\", "").replace('"', "")
+                    elif class_name == "match_img":
+                        img_tag = div.find("img")
+                        if img_tag and img_tag.has_attr("src"):
+                            app["img"] = img_tag["src"].replace("\\", "").replace('"', "")
+
                 apps.append(app)
+
         return {"apps": apps}
 
     # This should be a private method imo, I don't know how you would like to name them so I'll leave it as is
