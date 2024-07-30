@@ -31,13 +31,21 @@ class Users:
             single (bool, optional): Gets one player. Defaults to True. When false, steam_id can be a string of steamids and delimited by a ','
 
         """
-        user_response = self.__client.request(
-            "get", "/ISteamUser/GetPlayerSummaries/v2/", params={"steamids": steam_id}
-        )["response"]
         if single:
+            user_response = self.__client.request(
+                "get", "/ISteamUser/GetPlayerSummaries/v2/", params={"steamids": steam_id}
+            )["response"]
             return {"player": user_response["players"][0]}
         else:
-            return {"players": user_response["players"]}
+            user_response = {"players": []}
+            steam_ids = steam_id.split(",")
+            for i in range(0, len(steam_ids), 100):
+                batch_ids = steam_ids[i:i+100]
+                batch_response = self.__client.request(
+                    "get", "/ISteamUser/GetPlayerSummaries/v2/", params={"steamids": ",".join(batch_ids)}
+                )["response"]
+                user_response["players"].extend(batch_response["players"])
+            return user_response
 
     def get_user_friends_list(self, steam_id: str) -> dict:
         """Gets friend list of a user
