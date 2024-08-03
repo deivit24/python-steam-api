@@ -58,7 +58,11 @@ class Apps:
                     recommendations,
                     achievements,
         """
-        response = request("get", self.__app_details_url, params={"appids": app_id, "cc": country, "filters": filters})
+        response = request(
+            "get",
+            self.__app_details_url,
+            params={"appids": app_id, "cc": country, "filters": filters},
+        )
         json_loaded_response = json.loads(response.text)
         return json_loaded_response
 
@@ -90,6 +94,77 @@ class Apps:
             "/ISteamUserStats/GetPlayerAchievements/v1/",
             params={"steamid": steam_id, "appid": app_id, "l": language},
         )
+        return response
+
+    def file_service_get_details(
+        self,
+        key: str,
+        publishedfileids: list[int],
+        includetags: bool = True,
+        includeadditionalpreviews: bool = True,
+        includechildren: bool = True,
+        includekvtags: bool = True,
+        includevotes: bool = True,
+        short_description: bool = True,
+        includeforsaledata: bool = True,
+        includemetadata: bool = True,
+        language: typing.Optional[int] = None,
+        return_playtime_stats: int = 30,
+        appid: typing.Optional[int] = None,
+        strip_description_bbcode: bool = True,
+        desired_revision: typing.Optional[int] = None,
+        includereactions: bool = False,
+        admin_query: bool = True,
+    ) -> dict:
+        """Queries files with the Steamworks Web API
+
+        Args:
+            key (str): Steamworks Web API user authentication key.
+            publishedfileids (List[int]): Set of published file IDs to retrieve details for.
+            includetags (bool): If true, return tag information in the returned details.
+            includeadditionalpreviews (bool): If true, return preview information in the returned details.
+            includechildren (bool): If true, return children in the returned details.
+            includekvtags (bool): If true, return key value tags in the returned details.
+            includevotes (bool): If true, return vote data in the returned details.
+            short_description (bool): If true, return a short description instead of the full description.
+            includeforsaledata (bool): If true, return pricing data, if applicable.
+            includemetadata (bool): If true, populate the metadata field.
+            language (Optional[int]): Specifies the localized text to return. Defaults to English.
+            return_playtime_stats (int): Return playtime stats for the specified number of days before today.
+            appid (Optional[int]): App ID associated with the published files.
+            strip_description_bbcode (bool): Strips BBCode from descriptions.
+            desired_revision (Optional[int]): Return the data for the specified revision.
+            includereactions (bool): If true, reactions to items will be returned.
+            admin_query (bool): If true, return hidden items.
+        """
+        params = {
+            "key": key,
+            "includetags": includetags,
+            "includeadditionalpreviews": includeadditionalpreviews,
+            "includechildren": includechildren,
+            "includekvtags": includekvtags,
+            "includevotes": includevotes,
+            "short_description": short_description,
+            "includeforsaledata": includeforsaledata,
+            "includemetadata": includemetadata,
+            "language": language,
+            "return_playtime_stats": return_playtime_stats,
+            "appid": appid,
+            "strip_description_bbcode": strip_description_bbcode,
+            "desired_revision": desired_revision,
+            "includereactions": includereactions,
+            "admin_query": admin_query,
+        }
+
+        # Add published file IDs to parameters
+        for index, file_id in enumerate(publishedfileids):
+            params[f"publishedfileids[{index}]"] = file_id
+
+        # Remove keys with None values
+        params = {k: v for k, v in params.items() if v is not None}
+
+        response = self.__client.request("get", "/IPublishedFileService/GetDetails/v1/", params=params)
+
         return response
 
     # Is term meant to be any or a string, I'm not familiar enough with steam search so I'll leave it as is
