@@ -454,3 +454,198 @@ user = steam.users.get_player_bans("<steam_id>")
   ]
 }
 ```
+
+### Retrieves information about a set of published files.
+
+```python
+import os
+from steam_web_api import Steam
+
+KEY = os.environ.get("STEAM_API_KEY")
+
+
+steam = Steam(KEY)
+
+key = <access_key>
+# Can be multiple publish file ids
+file_ids = [2086515808]
+
+
+publishedfiledetails = steam.apps.file_service_get_details(
+    key=key, publishedfileids=file_ids, includevotes=True
+)
+```
+
+```python
+{
+    "response": {
+        "publishedfiledetails": [
+            {
+                "result": 1,
+                "publishedfileid": "2086515808",
+                "creator": "76561198021181972",
+                "creator_appid": 4000,
+                "consumer_appid": 4000,
+                "consumer_shortcutid": 0,
+                "filename": "",
+                "file_size": "77837190",
+                "preview_file_size": "542105",
+                "preview_url": "https://steamuserimages-a.akamaihd.net/ugc/1027328686644128049/6BBC8D5C3F8230DBAA5BACA9F43936E31B3C78D6/",
+                "url": "",
+                "hcontent_file": "8253646490380086716",
+                "hcontent_preview": "1027328686644128049",
+                "title": "TTT Windmill in the sky",
+                "short_description": "Updated 18th May 2020 Fragments of land have drifted together to form a new tranquil land, floating way above the cities. While the gardens are peaceful, the wrong step may result in someone disappearing into the clouds. Feedback is greatly appreciated! No",
+                "time_created": 1588735858,
+                "time_updated": 1589755683,
+                "visibility": 0,
+                "flags": 5632,
+                "workshop_file": False,
+                "workshop_accepted": False,
+                "show_subscribe_all": False,
+                "num_comments_public": 67,
+                "banned": False,
+                "ban_reason": "",
+                "banner": "76561197960265728",
+                "can_be_deleted": True,
+                "app_name": "Garry's Mod",
+                "file_type": 0,
+                "can_subscribe": True,
+                "subscriptions": 19184,
+                "favorited": 401,
+                "followers": 0,
+                "lifetime_subscriptions": 31670,
+                "lifetime_favorited": 474,
+                "lifetime_followers": 0,
+                "lifetime_playtime": "0",
+                "lifetime_playtime_sessions": "0",
+                "views": 9468,
+                "num_children": 0,
+                "num_reports": 0,
+                "previews": [
+                    {
+                        "previewid": "19122426",
+                        "sortorder": 10,
+                        "url": "https://steamuserimages-a.akamaihd.net/ugc/1027329389695074141/D656F3253B4BDAB6205F5182EFD4AFB2C4989741/",
+                        "size": 396048,
+                        "filename": "20200517235526_1.jpg",
+                        "preview_type": 0,
+                    },
+                    {
+                        "previewid": "19122427",
+                        "sortorder": 11,
+                        "url": "https://steamuserimages-a.akamaihd.net/ugc/1027329389695074159/9AAD8E55FAD396A4A0B6B61A45E26B28687EF3EA/",
+                        "size": 478634,
+                        "filename": "20200517235542_1.jpg",
+                        "preview_type": 0,
+                    },
+                    {
+                        "previewid": "19122428",
+                        "sortorder": 12,
+                        "url": "https://steamuserimages-a.akamaihd.net/ugc/1027329389695074181/475893AAFEBDC7C44CB40A651B3118D3C0D3C5DE/",
+                        "size": 563097,
+                        "filename": "20200517235624_1.jpg",
+                        "preview_type": 0,
+                    },
+                    {
+                        "previewid": "19122429",
+                        "sortorder": 13,
+                        "url": "https://steamuserimages-a.akamaihd.net/ugc/1027329389695074191/4A721CFFA91B53BE05C40E1B80081C1408F46320/",
+                        "size": 296901,
+                        "filename": "20200517235700_1.jpg",
+                        "preview_type": 0,
+                    },
+                    {
+                        "previewid": "19122430",
+                        "sortorder": 14,
+                        "url": "https://steamuserimages-a.akamaihd.net/ugc/1027329389695074202/2784BCB0C3F45AE0B487238EC466BB1CD1BD68BD/",
+                        "size": 482422,
+                        "filename": "20200517235705_1.jpg",
+                        "preview_type": 0,
+                    },
+                    {
+                        "previewid": "19122431",
+                        "sortorder": 15,
+                        "url": "https://steamuserimages-a.akamaihd.net/ugc/1027329389695074210/0BB495AB795BF0755AE59EB8FE00E32887E839F3/",
+                        "size": 325917,
+                        "filename": "20200517235718_1.jpg",
+                        "preview_type": 0,
+                    },
+                    {
+                        "previewid": "19122432",
+                        "sortorder": 16,
+                        "url": "https://steamuserimages-a.akamaihd.net/ugc/1027329389695074222/6A56BB158AA0303E865AAF47E42BE877F329E02A/",
+                        "size": 441783,
+                        "filename": "20200517235728_1.jpg",
+                        "preview_type": 0,
+                    },
+                    {
+                        "previewid": "19122433",
+                        "sortorder": 17,
+                        "url": "https://steamuserimages-a.akamaihd.net/ugc/1027329389695074230/8B88EFDCEDD0DEF60EA36F15D78323C311D6AD10/",
+                        "size": 477307,
+                        "filename": "20200517235735_1.jpg",
+                        "preview_type": 0,
+                    },
+                    {
+                        "previewid": "19122434",
+                        "sortorder": 18,
+                        "url": "https://steamuserimages-a.akamaihd.net/ugc/1027329389695074240/E0B1D14CD0C43F17FD7B2B6E7AF4BA87D2097A37/",
+                        "size": 442290,
+                        "filename": "20200517235755_1.jpg",
+                        "preview_type": 0,
+                    },
+                    {
+                        "previewid": "19122435",
+                        "sortorder": 19,
+                        "url": "https://steamuserimages-a.akamaihd.net/ugc/1027329389695074251/741495F32F584CE23219B7CDF2EC10C7E3B36F58/",
+                        "size": 511552,
+                        "filename": "20200517235817_1.jpg",
+                        "preview_type": 0,
+                    },
+                    {
+                        "previewid": "19122436",
+                        "sortorder": 20,
+                        "url": "https://steamuserimages-a.akamaihd.net/ugc/1027329389695074259/4DE7E9061D3BDDC6B7C5CA6995FD3D99B5A665DB/",
+                        "size": 848443,
+                        "filename": "20200517235828_1.jpg",
+                        "preview_type": 0,
+                    },
+                    {
+                        "previewid": "19122437",
+                        "sortorder": 21,
+                        "url": "https://steamuserimages-a.akamaihd.net/ugc/1027329389695074267/4AC9DBF871C115DC270EF6D9D9A62D5276E4E067/",
+                        "size": 344893,
+                        "filename": "20200517235848_1.jpg",
+                        "preview_type": 0,
+                    },
+                    {
+                        "previewid": "21893051",
+                        "sortorder": 22,
+                        "youtubevideoid": "2xYzDODU6Ik",
+                        "preview_type": 1,
+                        "external_reference": "",
+                    },
+                ],
+                "tags": [
+                    {"tag": "Addon", "display_name": "Addon"},
+                    {"tag": "map", "display_name": "map"},
+                    {"tag": "Scenic", "display_name": "Scenic"},
+                ],
+                "vote_data": {
+                    "score": 0.7626459002494812,
+                    "votes_up": 146,
+                    "votes_down": 11,
+                },
+                "playtime_stats": {"playtime_seconds": "0", "num_sessions": "0"},
+                "language": 0,
+                "maybe_inappropriate_sex": False,
+                "maybe_inappropriate_violence": False,
+                "revision_change_number": "33",
+                "revision": 1,
+                "ban_text_check_result": 0,
+            }
+        ]
+    }
+}
+```
