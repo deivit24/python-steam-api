@@ -1,6 +1,7 @@
 from .client import Client
 
 
+# This is just a test comment for lazy git
 class Users:
     """Steam Users API client"""
 
