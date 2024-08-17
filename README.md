@@ -194,7 +194,7 @@ from steam_web_api import Steam
 
 KEY = os.environ.get("STEAM_API_KEY")
 
-steam = Steam()
+steam = Steam(KEY)
 
 # arguments: steamid
 user = steam.users.get_owned_games("76561198995017863")
