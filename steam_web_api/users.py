@@ -1,4 +1,10 @@
+import json
+from typing import Union
+
+from requests import request
+
 from .client import Client
+from .constants import API_APP_WISHLIST
 
 
 class Users:
@@ -7,6 +13,7 @@ class Users:
     def __init__(self, client: Client):
         """Constructor for Steam Users class"""
         self.__client = client
+        self.__wishlist_url = API_APP_WISHLIST
 
     def search_user(self, search: str) -> dict:
         """Searches for exact match
@@ -188,3 +195,20 @@ class Users:
             params={"vanityurl": vanity},
         )["response"]
         return response
+
+    def get_profile_wishlist(self, steam_id: str, page: int = 0, version: int = 23) -> Union[dict, list]:
+        wishlist_profile_url = f"{self.__wishlist_url}/{steam_id}/wishlistdata"
+        response = request(
+            "get",
+            wishlist_profile_url,
+            params={"p": page, "v": version},
+        )
+        json_loaded_response = json.loads(response.text)
+        does_no_exists = json_loaded_response.get("success", None)
+        # This api is weird. If its successful, it returns a dict with the values
+        # if its not successful it returns a dict with key called success with the value of 2.
+        # This means the user does not have a wishwish. This is a, what I have doing if i
+        # just returning an empty list
+        if does_no_exists:
+            return []
+        return json_loaded_response
