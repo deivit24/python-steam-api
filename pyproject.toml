@@ -3,9 +3,7 @@ build-backend = 'setuptools.build_meta'
 requires = ['setuptools >= 64.0.0']
 
 [project]
-authors = [
-  {email = 'david.asal@hotmail.com', name = 'David Salazar'},
-]
+authors = [{email = 'david.asal@hotmail.com', name = 'David Salazar'}]
 classifiers = [
   'Development Status :: 4 - Beta',
   'Intended Audience :: Developers',
@@ -17,18 +15,9 @@ classifiers = [
   'Programming Language :: Python :: 3.12',
   'Programming Language :: Python :: 3.9',
 ]
-dependencies = [
-  'beautifulsoup4',
-  'requests',
-]
+dependencies = ['beautifulsoup4', 'requests']
 description = 'Python Client wrapper for Steam API.'
-keywords = [
-  'api',
-  'python',
-  'steam community',
-  'steam',
-  'steamapi',
-]
+keywords = ['api', 'python', 'steam community', 'steam', 'steamapi']
 license = {file = 'LICENSE'}
 maintainers = [
   {email = 'mathieu.scheltienne@fcbg.ch', name = 'Mathieu Scheltienne'},
@@ -36,20 +25,12 @@ maintainers = [
 name = 'python-steam-api'
 readme = 'README.md'
 requires-python = '>=3.9'
-version = '2.0.3'
+version = '2.0.4'
 
 [project.optional-dependencies]
-all = [
-  'python-steam-api[build]',
-  'python-steam-api[style]',
-]
-build = [
-  'build',
-  'twine',
-]
-full = [
-  'python-steam-api[all]',
-]
+all = ['python-steam-api[build]', 'python-steam-api[style]']
+build = ['build', 'twine']
+full = ['python-steam-api[all]']
 style = [
   'codespell[toml]>=2.2.4',
   'isort',
