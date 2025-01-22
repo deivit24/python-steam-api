@@ -62,17 +62,21 @@ class Users:
                 user_response["players"].extend(batch_response["players"])
             return user_response
 
-    def get_user_friends_list(self, steam_id: str) -> dict:
+    def get_user_friends_list(self, steam_id: str, enriched=True) -> dict:
         """Gets friend list of a user
 
         Args:
             steam_id (str): Steam 64 ID
+            enriched (bool, optional): Enriches the response with user details. Defaults to True.
         """
         friends_list_response = self.__client.request(
             "get", "/ISteamUser/GetFriendList/v1/", params={"steamid": steam_id}
         )["friendslist"]
-        transform_friends = self._transform_friends(friends_list_response)
-        return {"friends": transform_friends}
+        if enriched:
+            transform_friends = self._transform_friends(friends_list_response)
+            return {"friends": transform_friends}
+        else:
+            return friends_list_response
 
     def get_user_recently_played_games(self, steam_id: str) -> dict:
         """Gets recently played games
