@@ -172,6 +172,47 @@ Response
 }
 ```
 
+#### Getting Friends List *(flat version)*
+
+For frequent friend list queries, you can disable enrichment to reduce the number of requests sent to the Steam Web API.
+
+```python
+import os
+from steam_web_api import Steam
+
+KEY = os.environ.get("STEAM_API_KEY")
+
+
+steam = Steam(KEY)
+
+# arguments: steamid
+user = steam.users.get_user_friends_list("76561198995017863", enriched=False)
+```
+
+Response
+
+```json
+{
+  "friends": [
+    {
+      "friend_since": 1634692088,
+      "relationship": "friend",
+      "steamid": "76561198164668273"
+    },
+    {
+      "friend_since": 1649989273,
+      "relationship": "friend",
+      "steamid": "76561198040366189"
+    },
+    {
+      "friend_since": 1634692171,
+      "relationship": "friend",
+      "steamid": "76561198030124562"
+    }
+  ]
+}
+```
+
 ### Getting Users Recently Played Games
 
 ```python
