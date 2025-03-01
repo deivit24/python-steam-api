@@ -241,6 +241,21 @@ steam = Steam(KEY)
 user = steam.users.get_owned_games("76561198995017863")
 ```
 
+### Getting User Shared Games / Family Library
+
+```python
+import os
+from steam_web_api import Steam
+
+KEY = os.environ.get("STEAM_API_KEY")
+ACCESS_TOKEN = os.environ.get("STEAM_ACCESS_TOKEN")
+
+steam = Steam(KEY)
+
+# arguments: steamid, token, include_owned (default: False)
+user = steam.users.get_shared_games("76561198995017863", ACCESS_TOKEN, include_owned=True)
+```
+
 ### Getting User Steam Level
 
 ```python
