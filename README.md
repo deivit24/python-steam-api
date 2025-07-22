@@ -373,6 +373,8 @@ Response
 
 ### App/Game details
 
+This call does not require a Steam API Key
+
 #### Parameters:
 
 - `app_id` (int): The unique App ID of the app you want to retrieve details for. For example, 105600 corresponds to "Terraria"
@@ -708,6 +710,8 @@ publishedfiledetails = steam.apps.file_service_get_details(
 
 ### Getting user wishlist data
 
+This call does not require a Steam API Key
+
 ```python
 import os
 from steam_web_api import Steam
@@ -724,49 +728,16 @@ user = steam.users.get_profile_wishlist("<steam_id>")
 #### Example response
 
 ```python
-{
-	"16900": {
-		"name": "GROUND BRANCH",
-		"capsule": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/16900/header_292x136.jpg?t=1719067212",
-		"review_score": 8,
-		"review_desc": "Very Positive",
-		"reviews_total": "17,360",
-		"reviews_percent": 90,
-		"release_date": "1534253340",
-		"release_string": "Aug 14, 2018",
-		"platform_icons": "<span class=\"platform_img win\"></span>",
-		"subs": [
-			{
-				"packageid": 744465,
-				"bundleid": null,
-				"discount_block": "<div class=\"discount_block discount_block_large no_discount\" data-price-final=\"2999\" data-bundlediscount=\"0\" data-discount=\"0\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$29.99</div></div></div>",
-				"discount_pct": null,
-				"price": "2999"
-			}
-		],
-		"type": "Game",
-		"screenshots": [
-			"ss_fb28f92b5a4b77ac9b411afc7d2e4441478260e8.jpg",
-			"ss_4a6538eef15c7a2565fa699531ec8da7c66ddb5d.jpg",
-			"ss_7b6fe583943afdbc250ddba6e02c31ac886bf559.jpg",
-			"ss_1a4c8ad287e200d927d56972564ca6deb439c551.jpg"
-		],
-		"review_css": "positive",
-		"priority": 4,
-		"added": 1536368868,
-		"background": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/16900/page_bg_generated_v6b.jpg?t=1719067212",
-		"rank": 839,
-		"tags": [
-			"Tactical",
-			"Realistic",
-			"Military",
-			"FPS",
-			"Shooter"
-		],
-		"is_free_game": false,
-		"deck_compat": "2",
-		"early_access": 1,
-		"win": 1
-	}
-}
+[
+  {
+    'appid': 3548580, 
+    'priority': 0, 
+    'date_added': 1749992867
+  }, 
+  {
+    'appid': 3615290, 
+    'priority': 0, 
+    'date_added': 1746367747
+  }
+]
 ```
