@@ -200,12 +200,12 @@ class Users:
         )["response"]
         return response
 
-    def get_profile_wishlist(self, steam_id: str, page: int = 0, version: int = 23) -> Union[dict, list]:
-        wishlist_profile_url = f"{self.__wishlist_url}/{steam_id}/wishlistdata"
+    def get_profile_wishlist(self, steam_id: str) -> Union[dict, list]:
+        wishlist_profile_url = f"{self.__wishlist_url}"
         response = request(
             "get",
             wishlist_profile_url,
-            params={"p": page, "v": version},
+            params={"steamid": steam_id},
         )
         json_loaded_response = json.loads(response.text)
         does_no_exists = json_loaded_response.get("success", None)
@@ -215,8 +215,8 @@ class Users:
         # just returning an empty list
         if does_no_exists:
             return []
-        return json_loaded_response
-    
+        return json_loaded_response["response"]["items"]
+
     def get_shared_games(self, steam_id: str, token: str, include_owned: bool = False) -> dict:
         """Gets shared games from family library. This is an undocumented API endpoint.
 
@@ -226,9 +226,17 @@ class Users:
         """
         # The parameter include_own needs to be set to get all shared games. Apart from its name, it does not mean to get games the user owns.
         response = self.__client.request(
-            "get", 
+            "get",
             "/IFamilyGroupsService/GetSharedLibraryApps/v1",
-            params={"steamids": steam_id, "access_token": token, "family_groupid": 0, "include_own": 1, "include_non_games": 0, "include_excluded": 0, "include_free": 0},
+            params={
+                "steamids": steam_id,
+                "access_token": token,
+                "family_groupid": 0,
+                "include_own": 1,
+                "include_non_games": 0,
+                "include_excluded": 0,
+                "include_free": 0,
+            },
         )["response"]
         if not include_owned:
             response["apps"] = [game for game in response["apps"] if steam_id not in game["owner_steamids"]]

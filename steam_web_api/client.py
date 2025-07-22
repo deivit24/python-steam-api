@@ -10,7 +10,7 @@ from .utils import buildUrlWithParams, mergeDict, retry
 class Client:
     """Streams API HTTP client"""
 
-    def __init__(self, key: str, headers: dict = {}):
+    def __init__(self, key: str = "", headers: dict = {}):
         """Constructor for TypeForm API client"""
         self.__headers = mergeDict(
             {
