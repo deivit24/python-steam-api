@@ -25,7 +25,7 @@ maintainers = [
 name = 'python-steam-api'
 readme = 'README.md'
 requires-python = '>=3.9'
-version = '2.2.0'
+version = '2.2.1'
 
 [project.optional-dependencies]
 all = ['python-steam-api[build]', 'python-steam-api[style]']
