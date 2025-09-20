@@ -168,11 +168,12 @@ class Apps:
         return response
 
     # Is term meant to be any or a string, I'm not familiar enough with steam search so I'll leave it as is
-    def search_games(self, term, country="US"):
+    def search_games(self, term: str, country: str = "US", fetch_discounts: bool = False) -> dict:
         """Searches for games using the information given
         Args:
-            term (Any): Search term
+            term (str): Search term
             country (str): ISO Country Code
+            fetch_discounts (bool): If true, return discounts.
         """
         url = self.search_url(term, country)
         result = request("get", url)
@@ -192,6 +193,18 @@ class Apps:
                 href = link["href"].replace("\\", "").replace('"', "")
                 app["id"] = [int(i) for i in string_id.replace("\\", "").replace('"', "").split(",")]
                 app["link"] = href
+                if fetch_discounts:
+                    result = request("get", href)
+                    html = self.__validator(result)
+                    test = html.encode("utf-8").decode("unicode_escape")
+                    test_soup = BeautifulSoup(test, features="html.parser")
+                    app["has_discount"] = False
+                    app["discount"] = None
+                    first_text = test_soup.find(class_="game_purchase_discount_countdown")
+
+                    if first_text is not None:
+                        app["has_discount"] = True
+                        app["discount"] = first_text.text
 
                 # Extracting the div elements and their content
                 divs = link.find_all("div")
@@ -215,6 +228,7 @@ class Apps:
     def search_url(self, search, country="US"):
         params = {"f": "games", "cc": country, "realm": 1, "l": "english"}
         result = buildUrlWithParamsForSearch((self.__search_url), search, params=params)
+        print(result)
         return result
 
     def __validator(self, result: Response) -> typing.Union[str, dict]:

@@ -371,6 +371,54 @@ Response
 }
 ```
 
+#### Optional fetch_discounts argument
+
+If you pass `fetch_discounts=True`, the response will include two additional keys: `has_discount` and `discounts`.
+
+Under the hood, this uses BeautifulSoup and takes slightly longer to return. For each search result, it makes an additional request to another URL, looks for a specific class in the HTML, and applies the discount information accordingly.
+
+Example:
+
+```
+game = steam.apps.search_games("dune")
+```
+
+Results:
+
+```json
+{
+  "apps": [
+    {
+      "id": [1172710], 
+      "link": "https://store.steampowered.com/app/1172710/Dune_Awakening/?snr=1_7_15__13", 
+      "has_discount": True, 
+      "discount": "SPECIAL PROMOTION! Offer ends September 22", 
+      "name": "Dune: Awakening", 
+      "img": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172710/df8d4cbf6a55d1a7bb418dfd2533cadba84410dd/capsule_sm_120_alt_assets_4.jpg?t=1757949148", 
+      "price": "$39.99"
+    }, 
+    {
+      "id": [1605220], 
+      "link": "https://store.steampowered.com/app/1605220/Dune_Spice_Wars/?snr=1_7_15__13",
+      "has_discount": True,
+      "discount": "SPECIAL PROMOTION! Offer ends September 28",
+      "name": "Dune: Spice Wars",
+      "img": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1605220/capsule_sm_120.jpg?t=1733479296",
+      "price": "$13.99"
+    },
+    {
+      "id": [1689500],
+      "link": "https://store.steampowered.com/app/1689500/Dune_Imperium/?snr=1_7_15__13",
+      "has_discount": True,
+      "discount": "SPECIAL PROMOTION! Offer ends September 25",
+      "name": "Dune: Imperium",
+      "img": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1689500/2de4c4cb3caf92ccf957a04c36da7cf4037145c0/capsule_sm_120.jpg?t=1757355033",
+      "price": "$18.39"}
+  ]
+}
+```
+
+
 ### App/Game details
 
 This call does not require a Steam API Key
